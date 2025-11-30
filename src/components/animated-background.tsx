@@ -405,19 +405,26 @@ const AnimatedBackground = () => {
     }
   }, [activeSection, router]);
 
+  // Hide on mobile
+  if (isMobile) {
+    return null;
+  }
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Spline
-        ref={splineContainer}
-        onLoad={(app: Application) => {
-          setSplineApp(app);
-        }}
-        onError={() => {
-          console.error("Spline failed to load");
-        }}
-        scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
-      />
-    </Suspense>
+    <div className="w-full h-full">
+      <Suspense fallback={<div>Loading...</div>}>
+        <Spline
+          ref={splineContainer}
+          onLoad={(app: Application) => {
+            setSplineApp(app);
+          }}
+          onError={() => {
+            console.error("Spline failed to load");
+          }}
+          scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
+        />
+      </Suspense>
+    </div>
   );
 };
 
