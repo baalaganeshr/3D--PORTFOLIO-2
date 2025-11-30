@@ -398,12 +398,28 @@ const AnimatedBackground = () => {
     updateKeyboardTransform();
   }, [splineApp, isLoading, activeSection]);
 
+  // Fallback timeout in case Spline fails to load
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn("Spline failed to load, bypassing preloader");
+        bypassLoading();
+      }
+    }, 5000); // 5 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [isLoading, bypassLoading]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Spline
         ref={splineContainer}
         onLoad={(app: Application) => {
           setSplineApp(app);
+          bypassLoading();
+        }}
+        onError={() => {
+          console.error("Spline failed to load");
           bypassLoading();
         }}
         scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
