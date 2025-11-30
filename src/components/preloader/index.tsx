@@ -37,6 +37,7 @@ export const usePreloader = () => {
   return context;
 };
 const LOADING_TIME = 2.5;
+const MAX_LOADING_TIME = 4; // Maximum time before forcing completion
 function Preloader({ children, disabled = false }: PreloaderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingPercent, setLoadingPercent] = useState(0);
@@ -63,6 +64,16 @@ function Preloader({ children, disabled = false }: PreloaderProps) {
         // window.scrollTo(0, 0);
       },
     });
+
+    // Failsafe: Force completion after maximum time
+    const failsafeTimeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn("Forcing preloader completion after timeout");
+        bypassLoading();
+      }
+    }, MAX_LOADING_TIME * 1000);
+
+    return () => clearTimeout(failsafeTimeout);
   }, []);
 
   return (
