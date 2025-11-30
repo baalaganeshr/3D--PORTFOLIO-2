@@ -389,12 +389,21 @@ const AnimatedBackground = () => {
 
   // Reveal keyboard on load/route change
   useEffect(() => {
-    const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
-    router.push("/" + hash, { scroll: false });
-
     if (!splineApp || keyboardRevealed) return;
     updateKeyboardTransform();
-  }, [splineApp, activeSection]);
+  }, [splineApp]);
+
+  // Handle route changes separately to avoid loop
+  useEffect(() => {
+    const hash = activeSection === "hero" ? "" : `#${activeSection}`;
+    const currentHash = window.location.hash.slice(1) || "";
+    const targetHash = hash.replace("#", "");
+    
+    // Only push if hash is different
+    if (currentHash !== targetHash) {
+      router.push("/" + hash, { scroll: false });
+    }
+  }, [activeSection, router]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
