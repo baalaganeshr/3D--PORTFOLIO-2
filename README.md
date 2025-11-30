@@ -1,74 +1,122 @@
-# 🚀 My Portfolio Website
+# 🚀 3D Portfolio Template
 
-Welcome to the repository for my personal portfolio website! This is where I showcase my skills, projects, and a bit of my personality through jaw-dropping 3D animations, slick interactions, and fluid motion. If you're into creative web design, you're in the right place.
+A stunning portfolio template featuring jaw-dropping 3D animations, smooth interactions, and modern design. Perfect for developers, designers, and creative professionals who want to showcase their work in style.
 
-![Portfolio Preview](https://github.com/Naresh-Khatri/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
+## ✨ Features
 
-## 🔥 Features
-
-- **3D Animations**: Custom-made interactive keyboard using Spline with skills as keycaps that reveal titles and descriptions on hover.
-- **Slick Interactions**: Powered by GSAP and Framer Motion for smooth animations on scroll, hover, and element reveal.
-- **Space Theme**: Particles on a dark background to simulate a cosmic environment, making the experience out of this world.
-- **Responsive Design**: Fully responsive across all devices to ensure the best user experience.
-- **Innovative Web Design**: Combining creativity with functionality to push the boundaries of modern web design.
+- **Interactive 3D Elements**: Custom-made 3D keyboard using Spline with animated interactions
+- **Smooth Animations**: Powered by GSAP and Framer Motion for buttery-smooth scroll and hover effects
+- **Space Theme**: Particle effects on dark background creating an immersive cosmic experience
+- **Fully Responsive**: Looks great on all devices - desktop, tablet, and mobile
+- **Modern Tech Stack**: Built with Next.js 14, TypeScript, and Tailwind CSS
+- **Easy Customization**: Simple configuration file to add your own information
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js, React, Tailwind CSS, Shadcn, Aceternity UI
+- **Framework**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS, Shadcn UI, Aceternity UI
 - **Animations**: GSAP, Framer Motion, Spline Runtime
-- **Misc**: Resend, Socketio, Zod
+- **Backend**: Socket.io for real-time features
+- **Forms**: React Hook Form with Zod validation
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14+)
-- npm or yarn
+- Node.js (v18 or higher)
+- pnpm (recommended) or npm/yarn
 
 ### Installation
 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Naresh-Khatri/Portfolio.git
+    git clone https://github.com/baalaganeshr/3D--PORTFOLIO-2.git
+    cd 3D--PORTFOLIO-2
     ```
 
-2. Navigate to the project directory:
+2. Install dependencies:
 
     ```bash
-    cd Portfolio
-    ```
-
-3. Install dependencies:
-
-    ```bash
+    pnpm install
+    # or
     npm install
-    # or
-    yarn install
     ```
 
-4. Run the development server:
+3. Customize your portfolio by editing `src/data/config.ts`:
+
+    ```typescript
+    const config = {
+      title: "Your Name | Full-Stack Developer",
+      author: "Your Name",
+      email: "your.email@example.com",
+      site: "https://yourwebsite.com",
+      githubUsername: "your-username",
+      // ... update with your information
+    }
+    ```
+
+4. Update your projects in `src/data/projects.tsx`
+
+5. Run the development server:
 
     ```bash
-    npm run dev
+    pnpm dev
     # or
-    yarn dev
+    npm run dev
     ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the magic!
+6. Open [http://localhost:3000](http://localhost:3000) to see your portfolio!
+
+## 📝 Customization Guide
+
+### Update Personal Information
+
+Edit `src/data/config.ts` to add your:
+- Name and title
+- Email and website
+- Social media links
+- GitHub username
+
+### Add Your Projects
+
+Edit `src/data/projects.tsx` to showcase your work:
+- Add project details
+- Include screenshots
+- List technologies used
+- Add project descriptions
+
+### Customize Styling
+
+- Colors and theme: `tailwind.config.ts`
+- Global styles: `src/app/globals.css`
+- Component styles: Individual component files
 
 ## 🚀 Deployment
 
-This site is deployed on Vercel. For your own deployment, follow these steps:
+### Deploy to Vercel (Recommended)
 
-1. Push your code to a GitHub repository.
-2. Connect your repository to Vercel.
-3. Vercel will handle the deployment process.
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com)
+3. Vercel will auto-detect Next.js and deploy
 
-## 🤝 Contributing
+### Deploy to Other Platforms
 
-If you'd like to contribute or suggest improvements, feel free to open an issue or submit a pull request. All contributions are welcome!
+Build the production version:
+
+```bash
+pnpm build
+pnpm start
+```
 
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Credits
+
+Original design by [Naresh Khatri](https://github.com/Naresh-Khatri)
+
+## 💬 Support
+
+If you have any questions or need help, feel free to open an issue!
