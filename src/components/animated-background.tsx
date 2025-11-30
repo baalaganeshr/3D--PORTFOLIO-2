@@ -406,7 +406,7 @@ const AnimatedBackground = () => {
           setSplineApp(app);
           bypassLoading();
         }}
-        scene="/assets/skills-keyboard.spline"
+        scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
       />
     </Suspense>
   );

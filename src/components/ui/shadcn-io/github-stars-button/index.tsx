@@ -66,6 +66,12 @@ function GitHubStarsButton({
   );
 
   useEffect(() => {
+    // Skip API call if using placeholder username
+    if (username === 'your-username' || username === 'yourusername') {
+      setStars(0);
+      setIsLoading(false);
+      return;
+    }
     fetch(`https://api.github.com/repos/${username}/${repo}`)
       .then((response) => response.json())
       .then((data) => {
@@ -73,7 +79,10 @@ function GitHubStarsButton({
           setStars(data.stargazers_count);
         }
       })
-      .catch(console.error)
+      .catch(() => {
+        // Silently fail for template sites
+        setStars(0);
+      })
       .finally(() => setIsLoading(false));
   }, [username, repo]);
 
