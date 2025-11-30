@@ -7,7 +7,6 @@ const Spline = React.lazy(() => import("@splinetool/react-spline"));
 import { Skill, SkillNames, SKILLS } from "@/data/constants";
 import { sleep } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { usePreloader } from "./preloader";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { Section, getKeyboardState } from "./animated-background-config";
@@ -15,7 +14,6 @@ import { Section, getKeyboardState } from "./animated-background-config";
 gsap.registerPlugin(ScrollTrigger);
 
 const AnimatedBackground = () => {
-  const { isLoading, bypassLoading } = usePreloader();
   const { theme } = useTheme();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const splineContainer = useRef<HTMLDivElement>(null);
@@ -394,21 +392,9 @@ const AnimatedBackground = () => {
     const hash = activeSection === "hero" ? "#" : `#${activeSection}`;
     router.push("/" + hash, { scroll: false });
 
-    if (!splineApp || isLoading || keyboardRevealed) return;
+    if (!splineApp || keyboardRevealed) return;
     updateKeyboardTransform();
-  }, [splineApp, isLoading, activeSection]);
-
-  // Fallback timeout in case Spline fails to load
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isLoading) {
-        console.warn("Spline failed to load, bypassing preloader");
-        bypassLoading();
-      }
-    }, 5000); // 5 second timeout
-
-    return () => clearTimeout(timeout);
-  }, [isLoading, bypassLoading]);
+  }, [splineApp, activeSection]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -416,11 +402,9 @@ const AnimatedBackground = () => {
         ref={splineContainer}
         onLoad={(app: Application) => {
           setSplineApp(app);
-          bypassLoading();
         }}
         onError={() => {
           console.error("Spline failed to load");
-          bypassLoading();
         }}
         scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
       />

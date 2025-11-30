@@ -9,7 +9,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Footer from "@/components/footer/footer";
 import Script from "next/script";
-import Preloader from "@/components/preloader";
 import EasterEggs from "@/components/easter-eggs";
 import { config } from "@/data/config";
 import SocketContextProvider from "@/contexts/socketio";
@@ -82,19 +81,17 @@ export default function RootLayout({
             className="fixed inset-0 -z-10 animate-fade-in"
             quantity={100}
           />
-          <Preloader>
-            <SocketContextProvider>
-              <RemoteCursors />
-              <TooltipProvider>
-                <Header />
-                {children}
-                <Footer />
-              </TooltipProvider>
-            </SocketContextProvider>
-            <Toaster />
-            <EasterEggs />
-            <ElasticCursor />
-          </Preloader>
+          <SocketContextProvider>
+            <RemoteCursors />
+            <TooltipProvider>
+              <Header />
+              {children}
+              <Footer />
+            </TooltipProvider>
+          </SocketContextProvider>
+          <Toaster />
+          <EasterEggs />
+          <ElasticCursor />
         </ThemeProvider>
       </body>
     </html>
