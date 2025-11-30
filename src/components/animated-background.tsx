@@ -421,7 +421,7 @@ const AnimatedBackground = () => {
           onError={() => {
             console.error("Spline failed to load");
           }}
-          scene="/3D--PORTFOLIO-2/assets/skills-keyboard.spline"
+          scene="/assets/skills-keyboard.spline"
         />
       </Suspense>
     </div>
